@@ -8,8 +8,18 @@ export async function readCharacters() {
   console.log('Reading characters from JSON');
   try {
     const data = await fs.readFile(filePath, 'utf8');
-    const characters = JSON.parse(data);
-    console.log(`Successfully read ${characters.length} characters`);
+    let characters = JSON.parse(data);
+    // Normalize schema: Convert old 'image' to 'imagePath' for backward compatibility
+    characters = characters.map(char => {
+      if (char.image && !char.imagePath) {
+        char.imagePath = char.image;
+        delete char.image;
+      }
+      return char;
+    });
+    // Write back normalized data
+    await fs.writeFile(filePath, JSON.stringify(characters, null, 2));
+    console.log(`Successfully read and normalized ${characters.length} characters`);
     return characters;
   } catch (error) {
     console.error('Error reading characters:', error);
@@ -24,7 +34,14 @@ export async function readCharacters() {
 export async function writeCharacter(character) {
   console.log('Writing new character:', character);
   const characters = await readCharacters();
-  const newChar = { ...character, id: uuidv4() };
+  // Ensure imagePath is set (from caller or fallback)
+  const newChar = {
+    ...character,
+    imagePath: character.imagePath || '',
+    id: uuidv4()
+  };
+  // Remove old 'generatedImage' if present
+  delete newChar.generatedImage;
   characters.push(newChar);
   await fs.writeFile(filePath, JSON.stringify(characters, null, 2));
   console.log('Successfully wrote character:', newChar.id);

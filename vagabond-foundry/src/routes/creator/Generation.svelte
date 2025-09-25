@@ -9,8 +9,7 @@
   let prompt = $characterStore.prompt;
   let error = '';
 
-  let isDebug;
-  $: isDebug = $page.url.searchParams.get('debug') === 'true';
+  export let isDebug = false;
 
   function validateCharacter() {
     const c = $characterStore;
@@ -23,6 +22,9 @@
       generatedImage = result.image;
       prompt = result.prompt;
       characterStore.update(c => ({ ...c, generatedImage, prompt }));
+      if (isDebug) {
+        console.log('Debug mode: Generated prompt:', prompt);
+      }
     } else {
       error = result.error;
     }
@@ -72,6 +74,7 @@
           <input type="hidden" name="physical_desc" value={$characterStore.physical_desc} />
           <input type="hidden" name="trinket" value={$characterStore.trinket} />
           <input type="hidden" name="char_name" value={$characterStore.char_name} />
+          <input type="hidden" name="debug" value={isDebug.toString()} />
           <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
             Generate Again
           </button>
@@ -84,6 +87,7 @@
           <input type="hidden" name="trinket" value={$characterStore.trinket} />
           <input type="hidden" name="char_name" value={$characterStore.char_name} />
           <input type="hidden" name="generatedImage" value={generatedImage} />
+          <input type="hidden" name="debug" value={isDebug.toString()} />
           <button type="submit" class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
             Save to Gallery
           </button>
@@ -98,6 +102,7 @@
       <input type="hidden" name="physical_desc" value={$characterStore.physical_desc} />
       <input type="hidden" name="trinket" value={$characterStore.trinket} />
       <input type="hidden" name="char_name" value={$characterStore.char_name} />
+      <input type="hidden" name="debug" value={isDebug.toString()} />
       <button type="submit" class="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-lg font-semibold" disabled={!validateCharacter()}>
         Generate Portrait
       </button>

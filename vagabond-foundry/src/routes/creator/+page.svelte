@@ -128,6 +128,9 @@
         >
           Next
         </button>
+        {#if !validateStep()}
+          <p class="text-sm text-red-500 mt-2 ml-auto text-right">Please complete the selection above to continue.</p>
+        {/if}
       {:else}
         <!-- Save button in Generation -->
       {/if}
