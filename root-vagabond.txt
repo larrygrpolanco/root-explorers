@@ -1,0 +1,296 @@
+when you start any game of Root: The RPG, you have to make
+the player characters. Each player (except the GM) makes their
+own, and together these PCs constitute the band and the main
+cast of your game. So this is not a duty to take lightly!
+One important thing to know throughout the process—expect to flesh
+everything out as you go. Add details to descriptions and objects. Think
+about the questions someone might have about your character, and
+think about what the answers are. Never be afraid to add more detail
+above and beyond what’s listed on your character sheet—that’s how
+full, rich characters are made!
+Choosing a Playbook Choosing a Playbook
+To make a vagabond PC, you first need to pick a playbook. A playbook
+is a particular archetype, a set of ideas bound together as a guideline
+for your character—but not a straitjacket. Each playbook has plenty of
+room for you to build a unique vagabond!
+There are nine playbooks in this book, each corresponding to one
+of the vagabonds in Root: A Game of Woodland Might and
+Right, Root: The Riverfolk Company Expansion, and Root: The
+Underground Expansion. These are the playbooks you’ll find here:
+The Adventurer, The Arbiter, The Harrier, The Ranger, The Ronin,
+The Scoundrel, The Thief, The Tinker, and The Vagrant. Each player
+will pick their own playbook, and no doubling up—each player must
+choose a different playbook than the others. That way you’ll have
+a band of vagabonds with different traits, different problems, and
+different skill sets.
+Each playbook is its own unique double-sided sheet. When you make
+your character, you’ll print out your particular playbook and write all
+the pertinent information on those sheets, using it as the actual record
+of all your traits, abilities, equipment, and more, so this book often
+uses the terms “playbook” and “character sheet” interchangeably.
+For more on the individual playbooks, see page 132.
+Example
+Derrick is making his new character. He looks at the playbooks to see what
+matches his interests. He’d like a socially oriented character—not so much a
+fighter—so he’s looking at the Adventurer and the Vagrant. Since Marissa is
+interested in playing the Adventurer, though, he decides to take the Vagrant.
+42
+Root: The Roleplaying Game
+Filling Out the Playbook Filling Out the Playbook
+While you’re picking your playbook, you should be looking them over a
+bit. Once you know exactly which one you’ll play, make sure you have that
+whole playbook in front of you. Skim it over, taking a look at your playbook’s
+particular elements.
+Next, work your way through the playbook, filling out many sections entirely,
+making some notes and marks in other sections. You’ll make all of the crucial
+decisions to create your character’s core framework through this process. Your
+character will continue to change and grow over time, and many parts of your
+playbook will change to match—but the decisions you make now will have a
+great effect on your character’s identity and capabilities.
+Name, Species, Details, and Demeanor
+For these sections, you pick your name, your species, your details, and your
+demeanor. Choosing these elements can help sketch out the initial skeleton of
+your character. You can always revisit these later if you change your mind and
+want to pick something that better matches your developing character.
+Name
+For name, choose one option from the name list on the character creation
+worksheet or make up a similar option of your own. You might also have a
+nickname, like Scar or Patches, that other denizens call you!
+Species
+Your species is what kind of animal you are; either pick one option from the list,
+or add your own in the blank. There are four common animals in the Woodland—
+birds, foxes, mice, and rabbits. Other animals are less common, but the Woodland is
+a big place filled with lots of different creatures.
+In fact, your species can more or less be anything, with a few limits:
+·Don’t pick an animal that is bigger than a wolf in the real world. All denizens
+in Root: The RPG are more or less person-sized, but it starts feeling a bit
+strange if you bring in larger animals…and in the background of the Woodland,
+a lot of the larger animals (deer, bears) are particularly strange or dangerous.
+·Don’t choose purely aquatic animals. Amphibious animals can work, but no
+fish. The denizens of the Woodland—and the other player characters—are
+going to be skewed heavily to land animals. Make sure you’re picking an
+animal that can physically interact with the other denizens, and about whom
+you won’t be asking every five seconds, “But how do your gills work above
+water? How can you breathe?”
+Chapter 4: Making Vagabonds 43
+Animals don’t come with any special traits or abilities, beyond what makes
+sense in the fiction. Birds can fly. Moles can dig. Beavers can chew through
+wood. Foxes can scent other animals with ease. And on and on.
+These abilities aren’t special—they fit into the existing moves perfectly! When
+a bird tries to fly, if there’s no tension and no uncertainty, then she just does.
+When she tries to fly to evade a flash flood, well, that sounds like trusting fate,
+or attempting the roguish feat of acrobatics. When a mole tries to dig a tunnel,
+if there’s no tension and no uncertainty, then he just does. If he needs to dig
+a tunnel with perfect secrecy that comes up inside the Mayor’s house…then
+maybe he’s attempting the roguish feat of sneaking. And so on.
+The biggest effect of choosing a particular species for your character is social.
+If you’re a bird, then a lot of denizens will automatically associate you with the
+Eyrie Dynasties. If you’re a cat, then they’ll associate you with the Marquisate. If
+you’re a rabbit, fox, or mouse, you’ll be seen as a downtrodden, regular denizen
+of the Woodland. If you’re a lizard, wolf, toad, anteater, or some other animal
+from afar, then you might be viewed with suspicion and mistrust. Everybody in
+the Woodland carries their own expectations and prejudices, and unfortunately,
+your species affects how others see you, even if you try your best to distance
+yourself from those factions.
+Details
+For details, you have three lines of options with a few details that are mostly
+unique to your playbook. Circle at least one option from each line, or fill in your
+own and circle it. You can circle more options if you choose for them to apply.
+The first line is always the pronouns that your character uses; the second
+line is a small physical description of your character, to prime other players
+44
+Root: The Roleplaying Game
+for picturing the character in their heads; and the third line is an interesting
+detail or item that you carry, not generally something of great use or particular
+advantage, but a trinket that means something to you.
+Demeanor
+For demeanor, choose one option and circle it, or fill in your own. Demeanor is just
+a short cue about your character’s overall bearing and personality. As always, this is
+meant to be a prompt, a way to get you started with options that fit your playbook
+well—it’s not meant to be a hard limit.
+Example
+Derrick looks at the name list and likes the sound of “Jinx.” He considers for a
+minute making Jinx a mouse, but “opossum” keeps calling to him. Derrick likes
+the image of a vagabond who solves problems by playing dead and feels that an
+opossum is great for that! He circles it, picturing Jinx as a grey-furred rat-tailed
+opossum. But even though the character is an opossum, Jinx doesn’t get any special
+advantage by playing dead—instead, Derrick will still roll to trick an NPC when
+Jinx tries, and that’s when the Cunning stat will matter—but that’s all something to
+think about later.
+For details, Derrick chooses from the pronouns line that Jinx uses “they” pronouns,
+and “patchwork” from the physical description line sounds good—Derrick sees Jinx
+as having patched-up clothes sewn from countless other garments. He likes three
+of the trinket options, so he circles all three—“tattered cloak,” “luck charm,” and
+“gambling paraphernalia.” The good luck charm feels right, but he’ll figure out what
+it is later. He sees the gambling paraphernalia as dice and a cup to roll them.
+Background Questions
+The background questions are prompts to get you thinking about and filling in
+your character’s past. Every vagabond has a past, and those elements are great story
+fodder for interesting, dramatic scenes down the line.
+Each playbook has five questions, and each question has a few answers you can
+select. The five questions are usually the same on every playbook, although
+some of the options differ from playbook to playbook. If you feel strongly, you
+can answer a question with a different answer from those provided, but you
+should see if the presented answers work at all—most of them have plenty of
+wiggle room to provide more specifics and further detail.
+Where Do You Call Home?
+This question is a combination of “where are you from?” and “what place
+matters deeply to you?” If you’re a vagabond, you don’t really have a place where
+you’re settled, where you live day in and day out. But many vagabonds have a
+Chapter 4: Making Vagabonds 45
+place in their hearts held in special fondness, whether because they’re from
+that place, or because they return to that place when they need to rest for a
+time. That’s your home. Saying that it’s one of the clearings means that clearing
+is an important place to you; saying it’s the forest means that somewhere in
+the wilds of the Woodlands, you have a safe space to rest; and saying that it’s a
+place far from here means that you’re likely from elsewhere, not attached to any
+particular spaces in the Woodland.
+Why Are You a Vagabond?
+Every PC in a game of Root: The RPG is a vagabond. That means they don’t
+settle down, they keep traveling around the Woodland, and they’ve had to acquire
+some degree of skill. But most importantly, they choose to continue being
+vagabonds. Answering why you are a vagabond speaks both to the events that
+brought you to be a vagabond in the first place, and to the reasons you continue
+to be a vagabond today. What’s more, if you find the answer to this question is
+ever resolved, then it’s fair to ask if that character would retire and settle down.
+If they wouldn’t give up a life of adventuring yet…you need a new reason to keep
+being a vagabond.
+Whom Have You Left Behind?
+Becoming a vagabond always means leaving others behind, one way or another.
+Whether it’s friends and family you left behind at your home or it’s a teacher you
+left behind as you struck out on your own, there’s someone who meant a great
+deal to you whom you left to move throughout the Woodland as a vagabond.
+When you choose your answer to this question, you choose a character of
+significance to you. Make sure you think about some details for them, like their
+name, species, why you left them, and where they might still be found.
+Which Faction Have You Served the Most and
+With Which Have You Earned a Special Enmity?
+Both of these questions have to do with your vagabond’s relationship to the
+major factions present in your game. The factions are the powers like the
+Marquisate, the Eyrie Dynasties, the Woodland Alliance, and the denizens
+themselves. For each of these questions, you choose one faction, establishing
+that you’ve either aided them or harmed them in the past through your actions
+as a vagabond. Whatever you did, it was no little thing—the faction as a whole
+cares about and remembers what you did, to the point that your actions
+continue to influence their current feelings about you.
+You mark two prestige with the faction you served, and one notoriety with the
+faction you harmed. Marking prestige means that you are coming closer to
+forming a good reputation with that faction. Marking notoriety means that you
+46
+Root: The Roleplaying Game
+are coming closer to forming a bad reputation with that faction. You can choose
+the same faction for both questions if you like—it means you’ve both helped and
+injured the same faction. For more on prestige and notoriety, see page 110.
+And make sure over the course of character creation you think a bit about
+what you did to help or hurt those factions. There are plenty of other places
+throughout character creation where you might be able to flesh those details
+out, like when you establish your connections with other PCs (page 50) or
+when you establish the vagabond band’s daring exploit (page 61), so you
+don’t necessarily have to decide right away. But at some point during character
+creation (most often when you introduce your character to the other players),
+you will explain what you did to help and hurt those two factions, so make sure
+it’s percolating as you move forward.
+Example
+It’s time for Derrick to fill in the background of Jinx. He decides that Jinx is from
+somewhere far from here—Jinx is an opossum and they see themself as coming
+from a family of opossums living deep in the woods. The reason Jinx is a vagabond,
+Derrick decides, is that they are on the run for their lies and tricks. Jinx has run one
+too many cons in one too many places; nearly anywhere they’d go, there are probably
+a few denizens who might recognize them and try to take retribution.
+Derrick also decides that Jinx recently left behind their best friend and former partner
+in crime, a combination of two of the answers on the Vagrant playbook. Derrick sees
+this friend, named Pell, as another scammer who ultimately settled down and left
+the life of endless tricks. He names the clearing Pell still lives in, based on the options
+on the map. Finally, Derrick decides that Jinx has served the Woodland Alliance
+the most—Jinx’s tricks have been useful for the would-be rebels—and has earned a
+special enmity with the denizens themselves. The regular denizens of the Woodland
+are annoyed by the Vagrant’s cons. Derrick marks two prestige with the Woodland
+Alliance, and one notoriety with the denizens.
+Chapter 4: Making Vagabonds 47
+The Stats
+Every PC in Root: The RPG has five stats that measure, as a rough baseline,
+how good they are at particular things. Those five stats are: Charm, Cunning,
+Finesse, Luck, and Might.
+Charm represents a character’s facility with conversation, dialogue, and social
+interaction. The higher Charm a character has, the more likely they are to be
+able to persuade NPCs to act as they wish, or to figure out what’s going on in
+other characters’ heads.
+Cunning represents a character’s craftiness, perceptiveness, and cleverness.
+The higher Cunning a character has, the more likely they are to be able to
+trick NPCs to act as they wish, or to take in the situation around them and
+determine effective courses of action.
+Finesse represents a character’s manual dexterity and skill with their hands.
+The higher Finesse a character has, the more likely they are to be able to
+perform complicated roguish feats and do things like shoot a bow accurately.
+Luck represents a character’s sheer willpower, survivability, and, well…luck.
+The higher Luck a character has, the more likely they are to be able to scrape
+through dangerous or complicated situations more or less intact, but never
+without a price.
+Might represents a character’s pure physical strength. The higher Might a
+character has, the more likely they are to be able to smash apart doors or locks,
+or to be absolutely deadly in close-up melee combat.
+Your playbook comes with a pre-chosen set of stats, showcasing the particular
+kind of character that playbook represents. You can adjust your character’s pre-
+chosen set of stats slightly by adding +1 to any one stat of your choice, but you
+can’t raise any stat beyond a +2 (right now).
+In general, a +0 represents an average stat for a vagabond—which is still better
+than most Woodland denizens. Anything below a 0 means that when the
+vagabond tries to use that stat, they’re taking a real risk. Anything above a 0
+means that when the vagabond tries to use that stat, they’re likely to remain in
+control and get what they want.
+Example
+As a Vagrant, Jinx’s starting stats are Charm +2, Cunning +1, Finesse –1, Might 0,
+and Luck 0. Derrick gets to add +1 to any one stat of his choice, as long as he doesn’t
+raise it above a +2. Charm’s out, then. Derrick thinks about Luck—he can see Jinx
+as someone who’s relied on sheer good luck and will to make it through tough
+situations—but he ultimately chooses Cunning so that Jinx can run their tricks with
+even greater facility.
+48
+Root: The Roleplaying Game
+Who Decides?
+Who decides when you have achieved your drive or followed your nature? Does the
+player call it out, or is it the GM’s call?
+Ultimately, it’s the GM’s call, but the answer is often somewhere in the middle. If
+the GM notices that a vagabond has fulfilled their nature or drive, the GM should
+call it out—it’s a chance to get on the same page about how and when it is fulfilled,
+and to give that character an appropriate reward for dramatic play. In practice,
+though, it’s a lot harder for the GM to keep track of every vagabond’s natures and
+drives along with everything else going on in the game. So the most likely course
+of events is that the vagabond’s player fulfills their nature or drive and calls it out.
+If a player thinks they have hit their condition for a nature or drive, they should
+say so aloud. Most of the time, the GM will be on the same page, and everyone
+will agree that you’ve fulfilled it. If the GM does disagree, then it’s a good
+opportunity to get on the same page about what the drive or nature means. And
+if the character’s drive or nature doesn’t feel right anymore, it’s always possible to
+change it—see page 177 for more!
+Nature & Drives
+Every vagabond PC has a nature and two drives. Your nature speaks to your
+inner character, a kind of baseline description of what you feel, how you act,
+and most importantly, how you relieve stress. Your nature describes a way
+that you can clear all of your exhaustion track, usually by getting into trouble
+or giving in to some difficult urge. Exhaustion is one of your harm tracks,
+measuring how tired your character is; clearing it gives you a burst of energy to
+be much more effective. For more on exhaustion, see page 55.
+You are never required to follow your nature, but you will likely want to
+over the course of play, whether because it makes sense for your character
+or because you need to clear your exhaustion track. Pick a nature that you’re
+interested in actually following; if you can’t see yourself ever fulfilling your
+nature, then it’s not a good choice.
+Your drives, on the other hand, speak to deep wants within your character. If
+your nature is a kind of dangerous instinct of your vagabond, then your drives are
+desires that come up again and again. Your drives each give you a condition by
+which you can advance—fulfill the condition, and your vagabond grows just a bit
+stronger, just a bit more effective. For more on advancement, see page 170.
+You have two drives, and you can advance once for each drive per session.
+Similar to your nature, pick drives that you’re interested in pursuing. During
+Chapter 4: Making Vagabonds 49
+play you will look for opportunities to fulfill your drives and advance, so if
+you’re not interested in doing that for a particular drive, it’s not a good choice.
+Example
+Derrick knows that he wants Jinx to be a tricksy con artist. He looks at the Vagrant’s
+two natures, Drunk and Hustler, and instantly chooses Hustler—it fits Jinx’s
+mischievous, deceptive manner way better. Then, Derrick looks at the Vagrant’s
+drives. Clean Paws kind of speaks to his desire for Jinx to trick other people into
+acting how Jinx wants and then appear to be innocent…but he’s most interested in
+Chaos and Thrills. Derrick can see Jinx trying to fulfill those drives much more often
+during play, so he picks Chaos and Thrills as Jinx’s two drives.
