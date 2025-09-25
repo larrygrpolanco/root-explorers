@@ -1,0 +1,12 @@
+[
+  {
+    "id": "test-123",
+    "char_name": "Elara the Wanderer",
+    "playbook": "Hound",
+    "species": "Human",
+    "demeanor": "Stoic",
+    "physical_desc": "Tall with scarred hands",
+    "trinket": "Faded map",
+    "image": "/generated_images/elara-test.png"
+  }
+]
