@@ -1,0 +1,191 @@
+Basic playbook info taken from rule book
+
+The Adventurer 
+You are a peaceful, diplomatic vagabond, making allies
+from those you aid, perhaps toppling greater powers by
+forging strong bonds with others.
+
+Species
+• fox, mouse, rabbit,
+bird, owl, other
+
+Demeanor
+• charming, diplomatic,
+agreeable, stern
+
+Details
+• he, she, they, shifting
+• formal, colorful,
+multicultural, simple
+• medal of service,
+beaded jewelry, carved
+flute, pouches with
+pretty stones
+
+The Arbiter 
+
+You are a powerful, obstinate vagabond, serving as
+somewhere between a mercenary and a protector,
+perhaps taking sides too easily in the greater conflict
+between the factions.
+
+Species
+• fox, mouse, rabbit,
+bird, badger, other
+Demeanor
+• intimidating, honest,
+brusque, open
+
+Details
+• he, she, they, shifting
+• large, scarred, well-
+groomed, old
+• faded military insignia,
+eyepatch, repaired
+clothes, tarnished locket
+
+The Harrier 
+You are a quick, enterprising vagabond, racing easily
+from building to building and clearing to clearing
+without anything stopping you, perhaps finding yourself
+in places others would rather keep secret or hidden.
+
+Species
+• fox, mouse, rabbit,
+bird, squirrel, other
+Demeanor
+• excited, energetic,
+passionate, flighty
+Details
+• he, she, they, shifting
+• roguish, kitted out,
+vibrant, scarred
+• half-started maps,
+sewn bandana,
+ball and cup, wide-
+brimmed hat
+
+The Ranger The Ranger
+You are a capable, stealthy vagabond, centered on the
+forests that fill the Woodland between the clearings,
+more interested in the wilds than in the company of
+other Woodland denizens or their society.
+
+Species
+fox, mouse, rabbit,
+bird, wolf, other
+
+Demeanor
+terse, mistrusting,
+polite, kind
+
+Details
+he, she, they, shifting
+
+unkempt, scarred,
+natural, practical
+forest charm, leafy
+cloak, smoking pipe,
+stolen ring
+
+The Ronin The Ronin
+You are a skilled, willful vagabond, formerly a servant of
+a lord in a different land, now masterless. You came to
+the Woodland to live as a free vagabond.
+
+Species
+• fox, mouse, rabbit, bird, racoon dog, other
+Details
+• he, she, they, shifting
+
+• militaristic, outlandish,
+simple, colorful
+• lord’s token, mark of esteem, stringed
+instrument, board game
+
+Demeanor
+• gruff, polite, direct, dangerous
+
+The Scoundrel 
+You are a lucky, dangerous vagabond, acting more as
+destroyer and troublemaker than anything else, perhaps
+creating chaos and destruction for its own sake.
+
+Species
+• fox, mouse, rabbit,
+bird, cat, other
+Demeanor
+• shifty, slimy,
+straightforward, naive
+
+Details
+• he, she, they, shifting
+• suspicious,
+impoverished, flea-
+bitten, scarred
+• full face mask,
+mousesteel spark
+lighter, overly large coat,
+sulphurous pouches
+
+
+The Thief 
+You are a cunning, criminal vagabond, capable of
+stealing even the most well-guarded treasures, perhaps
+committed to crime and theft for its own sake.
+
+Species
+• fox, mouse, rabbit,
+bird, racoon, other
+Demeanor
+• fast-talking, quiet,
+angry, friendly
+
+Details
+• he, she, they, shifting
+• worn, fidgety,
+inconspicuous,
+flamboyant
+• black cape, large bag,
+old broken weapon,
+stolen scarf
+
+The Tinker 
+You are an adept, clever vagabond, interested in
+mechanisms and craftsmanship, perhaps possessed of
+ideas that separate you from those around you.
+Species
+• fox, mouse, rabbit,
+bird, beaver, other
+Demeanor
+• hopeful, cheerful,
+inquisitive, cynical
+Details
+• he, she, they, shifting
+• scattered, organized,
+grubby, singed
+• eccentric tool belt,
+beautiful whetstone,
+former patron’s
+insignia, massive packs
+
+The Vagrant
+
+You are a charming, survivor vagabond, using words
+to get out of dangerous situations, perhaps even
+setting possible predators upon each other to keep
+them away from yourself.
+Species
+Details
+• fox, mouse, rabbit,
+• he, she, they, shifting
+bird, opossum, other
+• mangy, wild, patchwork,
+inconspicuous
+Demeanor
+• stolen military insignia,
+• excited, low key,
+tattered cloak, luck
+thoughtful, angry
+charm, gambling
+paraphernalia
