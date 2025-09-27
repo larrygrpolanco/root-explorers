@@ -1,1 +1,389 @@
 @import 'tailwindcss';
+
+/* Root Vagabond Portrait Creator - Global Styles */
+/* Rustic woodland theme inspired by Root RPG */
+
+/* CSS Custom Properties for consistent theming */
+:root {
+  /* Color palette - earthy woodland tones */
+  --color-primary: #8b4513; /* Saddle brown */
+  --color-primary-light: #a0522d; /* Sienna */
+  --color-primary-dark: #654321; /* Dark brown */
+  
+  --color-secondary: #6b7280; /* Gray */
+  --color-secondary-light: #9ca3af;
+  --color-secondary-dark: #4b5563;
+  
+  --color-accent: #22c55e; /* Green */
+  --color-accent-light: #16a34a;
+  --color-accent-dark: #15803d;
+  
+  --color-warning: #f59e0b; /* Amber */
+  --color-error: #ef4444; /* Red */
+  
+  /* Neutral colors */
+  --color-background: #f3e8d3; /* Cream */
+  --color-background-secondary: #e8d5b7; /* Light tan */
+  --color-background-tertiary: #d4c4a8; /* Tan */
+  
+  --color-surface: rgba(255, 255, 255, 0.9);
+  --color-surface-hover: rgba(255, 255, 255, 0.95);
+  
+  --color-text-primary: #374151; /* Dark gray */
+  --color-text-secondary: #5d4e37; /* Dark olive */
+  --color-text-muted: #6b7280; /* Gray */
+  
+  /* Typography */
+  --font-family-serif: 'Georgia', 'Times New Roman', serif;
+  --font-family-sans: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(139, 69, 19, 0.05);
+  --shadow-md: 0 4px 6px rgba(139, 69, 19, 0.1);
+  --shadow-lg: 0 8px 32px rgba(139, 69, 19, 0.15);
+  --shadow-xl: 0 12px 40px rgba(139, 69, 19, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-sans);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-secondary) 50%, var(--color-background-tertiary) 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Add subtle texture to body */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(139, 69, 19, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(101, 67, 33, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(139, 69, 19, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Typography improvements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.6;
+}
+
+/* Link styles */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-normal);
+}
+
+a:hover {
+  color: var(--color-primary-light);
+}
+
+/* Button base styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Form elements */
+input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  border: 2px solid #d1d5db;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: white;
+  transition: all var(--transition-normal);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+/* Utility classes for consistent styling */
+.surface {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(139, 69, 19, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.surface:hover {
+  background: var(--color-surface-hover);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(139, 69, 19, 0.2);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation for page transitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-light);
+}
+
+/* Print styles */
+@media print {
+  body::before {
+    display: none;
+  }
+  
+  .surface {
+    background: white !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #000;
+    --color-text-primary: #000;
+    --color-background: #fff;
+  }
+  
+  .surface {
+    background: white;
+    border: 2px solid black;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles would go here */
+  /* For now, we'll keep the rustic light theme */
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px; /* Ensure readable text on mobile */
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+  }
+  
+  /* Improve touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Large screens - limit max width for readability */
+@media (min-width: 1200px) {
+  body {
+    font-size: 1.125rem;
+  }
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(139, 69, 19, 0.2);
+  color: var(--color-primary-dark);
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+/* Custom focus ring for better accessibility */
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.3);
+}
+
+/* Error states */
+.error {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.error-message {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: var(--spacing-xs);
+}
+
+/* Success states */
+.success {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1) !important;
+}
+
+/* Warning states */
+.warning {
+  border-color: var(--color-warning) !important;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1) !important;
+}

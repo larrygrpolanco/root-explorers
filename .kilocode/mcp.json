@@ -1,12 +1,12 @@
 {
-  "mcpServers": {
-    "filesystem": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/Users/larrygrpolanco/Documents/GitHub/"
-      ]
-    }
-  }
+	"mcpServers": {
+		"filesystem": {
+			"command": "npx",
+			"args": [
+				"-y",
+				"@modelcontextprotocol/server-filesystem",
+				"/Users/larrygrpolanco/Documents/GitHub/"
+			]
+		}
+	}
 }

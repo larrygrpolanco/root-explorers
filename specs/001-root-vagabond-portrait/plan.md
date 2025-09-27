@@ -1,7 +1,7 @@
-# Implementation Plan: [FEATURE]
+# Implementation Plan: Root Vagabond Portrait Creator
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**Branch**: `001-root-vagabond-portrait` | **Date**: 2025-09-26 | **Spec**: specs/001-root-vagabond-portrait/spec.md
+**Input**: Feature specification from `specs/001-root-vagabond-portrait/spec.md`
 
 ## Execution Flow (/plan command scope)
 
@@ -37,21 +37,40 @@
 
 ## Technical Context
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: SvelteKit JavaScript
+**Primary Dependencies**: Google Gemini Flash API
+**Storage**: JSON file (src/lib/server/gallery.json)
+**Testing**: TDD with Vitest for unit/integration, Playwright for E2E
+**Target Platform**: Web (mobile-first, Chrome/Safari/Firefox on iOS 15+/Android 10+)
+**Project Type**: Web application (SvelteKit unified frontend/backend)
+**Performance Goals**: Quiz completion <2 minutes, page loads <3 seconds, image generation <30 seconds, 60fps on mobile
+**Constraints**: No authentication, API key in .env (server-side only), custom inputs max 200 characters, basic accessibility (ARIA labels, keyboard nav), error handling with retries
+**Scale/Scope**: Small private group (~5 users), simple single-app structure, indefinite JSON storage for gallery (up to 50 entries), responsive design
+
+**Quiz Structure**: 3-step linear flow:
+
+- Step 1 (Essentials): Name (text input, required), Species (dropdown: Badger, Bird, Cat, Fox, Mouse, Owl, Rabbit, Raccoon, Squirrel, Wolf, Beaver, Opossum), Playbook (dropdown: Adventurer, Arbiter, Harrier, Ranger, Ronin, Scoundrel, Thief, Tinker, Vagrant).
+- Step 2 (Character): Presentation, Demeanor, Item - each with 4 radio options + Custom text input (reveals on select).
+- Step 3 (Scene): 4 radio options + Custom text input.
+  Validation: Required fields, inline errors; empty custom defaults to first option. State managed in Svelte store as object {name, species, playbook, presentation, demeanor, item, scene}.
+
+**Prompt Structure Example**: "Full body portrait of [name], a [species] [playbook]. Their demeanor is defined by: [demeanor]. They are dressed [presentation]. They carry [item]. We find them [scene]. In the vibrant, storybook art style of Kyle Ferrin's Root board game, textured and expressive." (Include reference Root art image in API call).
+
+**Theme & UI**: Rustic woodland (paper/wood textures), earthy palette (browns, greens, oranges, creams), serif headings, sans-serif body, clean responsive layout.
+
+**Acceptance Criteria**: Quiz completes without errors, image generates/displays from prompt, saves to gallery JSON, gallery loads/displays entries (image, name, playbook), mobile responsive, secure API handling, basic error messages/retries.
 
 ## Constitution Check
 
 _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-[Gates determined based on constitution file]
+- [x] User Experience Simplicity: 3-step linear quiz, mobile-friendly, <2min completion, clear navigation (Create/Gallery, Save/Edit/Try Again), loading indicators.
+- [x] Creative Flexibility: Pre-written + Custom options per question, editable prompt on results for regeneration.
+- [x] Technical Reliability and Simplicity: SvelteKit JS unified stack, server-side Gemini API calls, single JSON storage, no complex deps.
+- [x] Aesthetic and Thematic Fidelity: Rustic UI with earthy colors/textures, Root art style prompts with reference image.
+- [x] Privacy and Internal Use: No auth, local JSON, .env API key (server-only).
+
+**Evaluation**: All principles align; no violations. Initial Constitution Check: PASS.
 
 ## Project Structure
 
@@ -210,19 +229,19 @@ _This checklist is updated during execution flow_
 
 **Phase Status**:
 
-- [ ] Phase 0: Research complete (/plan command)
-- [ ] Phase 1: Design complete (/plan command)
-- [ ] Phase 2: Task planning complete (/plan command - describe approach only)
+- [x] Phase 0: Research complete (/plan command)
+- [x] Phase 1: Design complete (/plan command)
+- [x] Phase 2: Task planning complete (/plan command)
 - [ ] Phase 3: Tasks generated (/tasks command)
 - [ ] Phase 4: Implementation complete
 - [ ] Phase 5: Validation passed
 
 **Gate Status**:
 
-- [ ] Initial Constitution Check: PASS
-- [ ] Post-Design Constitution Check: PASS
-- [ ] All NEEDS CLARIFICATION resolved
-- [ ] Complexity deviations documented
+- [x] Initial Constitution Check: PASS
+- [x] Post-Design Constitution Check: PASS
+- [x] All NEEDS CLARIFICATION resolved
+- [x] Complexity deviations documented
 
 ---
 
