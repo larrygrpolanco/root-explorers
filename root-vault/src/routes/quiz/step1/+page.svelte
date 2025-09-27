@@ -13,3 +13,4 @@
 	<ColorSelector type="eye" />
 	<BuildHeightSelector />
 </div>
+<!-- Trivial edit for HMR verification -->

@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 
-const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
+const genAI = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY || '' });
 
 export async function generatePortrait(quizData) {
   const { build, height, species, furColor, eyeColor, definingFeature, typicalExpression, treasuredItem, preferredClothing } = quizData;
@@ -21,13 +21,14 @@ export async function generatePortrait(quizData) {
       const imageUrl = `data:image/png;base64,${base64}`;
       return { prompt, imageUrl };
     } else {
-      throw new Error('No image generated');
+      console.warn('No image generated from API response; using placeholder');
+      const imageUrl = `https://picsum.photos/400/600?t=${Date.now()}`;
+      return { prompt, imageUrl };
     }
   } catch (error) {
     console.error('API Error in generatePortrait:', error);
-    // Fallback to mock
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-    const imageUrl = `https://via.placeholder.com/400x600/${randomColor}/${randomColor}?text=${encodeURIComponent(`${species} Vagabond`)}`;
+    console.warn('Using fallback placeholder due to API error');
+    const imageUrl = `https://picsum.photos/400/600?t=${Date.now()}`;
     return { prompt, imageUrl };
   }
 }

@@ -26,17 +26,23 @@
 		}
 	})();
 
-	function handleNext() {
+	async function handleNext() {
 		if (currentStep < 3) {
-			goto(`/quiz/step${currentStep + 1}`);
+			await goto(`/quiz/step${currentStep + 1}`);
 		}
 	}
 
-	function handleComplete() {
+	async function handleBack() {
+		if (currentStep > 1) {
+			await goto(`/quiz/step${currentStep - 1}`);
+		}
+	}
+
+	async function handleComplete() {
 		const data = $quizStore;
 		const mockPrompt = `Generate a Root Vagabond portrait for: ${data.species} with ${data.furColor} fur, ${data.eyeColor} eyes, ${data.build} build, ${data.height} height, ${data.playbook} playbook. Defining feature: ${data.definingFeature}. Expression: ${data.typicalExpression}. Item: ${data.treasuredItem}. Clothing: ${data.preferredClothing}.`;
 		console.log('Mock AI Prompt:', mockPrompt);
-		goto('/results');
+		await goto('/results');
 	}
 </script>
 
@@ -79,7 +85,7 @@
 		<!-- Navigation -->
 		<div class="flex justify-between">
 			{#if currentStep > 1}
-				<button onclick={() => goto(`/quiz/step${currentStep - 1}`)} class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition">Back</button>
+				<button onclick={handleBack} class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition">Back</button>
 			{/if}
 			{#if currentStep < 3}
 				<button onclick={handleNext} disabled={!isValid} class="px-6 py-3 {isValid ? 'bg-blue-500 text-white hover:bg-blue-600' : 'bg-gray-300 text-gray-500 cursor-not-allowed'} rounded-lg transition ml-auto">Next</button>
