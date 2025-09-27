@@ -9,15 +9,14 @@ describe('POST /api/save Contract Tests', () => {
 	
 	// Valid Character object (complete from /generate response)
 	const validCharacter = {
-		name: 'Whiskers McTail',
-		species: 'Cat',
-		playbook: 'Scoundrel',
-		presentation: 'Elegant silk vest with brass buttons',
-		demeanor: 'Sly and calculating',
-		item: 'Lockpicking tools',
-		scene: 'Moonlit alleyway',
-		portrait: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ...',
-		prompt: 'A Cat Scoundrel vagabond with elegant silk vest...'
+	  name: 'Whiskers McTail',
+	  speciesRole: 'a cunning cat scoundrel',
+	  presentation: 'Elegant silk vest with brass buttons',
+	  demeanor: 'Sly, calculating, and always watchful',
+	  item: 'A set of finely crafted lockpicking tools',
+	  scene: 'In a shadowy moonlit alleyway behind the tavern',
+	  portrait: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ...',
+	  prompt: 'A cunning cat scoundrel vagabond with elegant silk vest...'
 	};
 
 	const expectedSuccessResponse = {
@@ -156,16 +155,15 @@ describe('POST /api/save Contract Tests', () => {
 	describe('Gallery File Operations', () => {
 		it('should read existing gallery.json and append new character', async () => {
 			const existingCharacter = {
-				name: 'Existing Character',
-				species: 'Fox',
-				playbook: 'Ranger',
-				presentation: 'Forest gear',
-				demeanor: 'Cautious',
-				item: 'Bow',
-				scene: 'Deep woods',
-				portrait: 'existing-portrait-data',
-				prompt: 'existing-prompt',
-				createdAt: '2025-09-25T10:00:00.000Z'
+			  name: 'Existing Character',
+			  speciesRole: 'a cautious fox ranger',
+			  presentation: 'Forest gear with leather straps and wooden accents',
+			  demeanor: 'Cautious, observant, and ready for action',
+			  item: 'A finely carved longbow with quiver of arrows',
+			  scene: 'Deep woods with ancient trees and dappled sunlight',
+			  portrait: 'existing-portrait-data',
+			  prompt: 'existing-prompt',
+			  createdAt: '2025-09-25T10:00:00.000Z'
 			};
 
 			fs.readFile.mockResolvedValue(JSON.stringify([existingCharacter]));

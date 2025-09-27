@@ -13,8 +13,7 @@ const initialState = {
   // Quiz data matching Character model
   data: {
     name: '',
-    species: '',
-    playbook: '',
+    speciesRole: '',
     presentation: '',
     demeanor: '',
     item: '',
@@ -97,70 +96,67 @@ export const quizActions = {
     let isValid = true;
 
     if (step === 1) {
-      // Validate name
-      if (!data.name?.trim()) {
-        errors.name = 'Name is required';
+      // Validate name only
+      const nameTrimmed = data.name?.trim() || '';
+      if (nameTrimmed.length < 2) {
+        errors.name = 'Name must be at least 2 characters';
         isValid = false;
-      } else if (data.name.trim().length > 50) {
+      } else if (nameTrimmed.length > 50) {
         errors.name = 'Name cannot exceed 50 characters';
-        isValid = false;
-      }
-
-      // Validate species
-      if (!data.species) {
-        errors.species = 'Please select a species';
-        isValid = false;
-      } else if (!Character.getSpecies().includes(data.species)) {
-        errors.species = 'Please select a valid species';
-        isValid = false;
-      }
-
-      // Validate playbook
-      if (!data.playbook) {
-        errors.playbook = 'Please select a playbook';
-        isValid = false;
-      } else if (!Character.getPlaybooks().includes(data.playbook)) {
-        errors.playbook = 'Please select a valid playbook';
         isValid = false;
       }
     }
 
     if (step === 2) {
-      // Validate presentation
-      if (!data.presentation?.trim()) {
-        errors.presentation = 'Please select how they present themselves';
+      // Validate speciesRole
+      const speciesRoleTrimmed = data.speciesRole?.trim() || '';
+      if (speciesRoleTrimmed.length < 20) {
+        errors.speciesRole = 'Species and role description must be at least 20 characters';
         isValid = false;
-      } else if (data.presentation.trim().length > 200) {
-        errors.presentation = 'Presentation cannot exceed 200 characters';
+      } else if (speciesRoleTrimmed.length > 300) {
+        errors.speciesRole = 'Species and role description cannot exceed 300 characters';
+        isValid = false;
+      }
+
+      // Validate presentation
+      const presentationTrimmed = data.presentation?.trim() || '';
+      if (presentationTrimmed.length < 20) {
+        errors.presentation = 'Presentation description must be at least 20 characters';
+        isValid = false;
+      } else if (presentationTrimmed.length > 300) {
+        errors.presentation = 'Presentation cannot exceed 300 characters';
         isValid = false;
       }
 
       // Validate demeanor
-      if (!data.demeanor?.trim()) {
-        errors.demeanor = 'Please select their demeanor';
+      const demeanorTrimmed = data.demeanor?.trim() || '';
+      if (demeanorTrimmed.length < 20) {
+        errors.demeanor = 'Demeanor description must be at least 20 characters';
         isValid = false;
-      } else if (data.demeanor.trim().length > 200) {
-        errors.demeanor = 'Demeanor cannot exceed 200 characters';
+      } else if (demeanorTrimmed.length > 300) {
+        errors.demeanor = 'Demeanor cannot exceed 300 characters';
         isValid = false;
       }
 
       // Validate item
-      if (!data.item?.trim()) {
-        errors.item = 'Please select their defining item';
+      const itemTrimmed = data.item?.trim() || '';
+      if (itemTrimmed.length < 20) {
+        errors.item = 'Item description must be at least 20 characters';
         isValid = false;
-      } else if (data.item.trim().length > 200) {
-        errors.item = 'Item cannot exceed 200 characters';
+      } else if (itemTrimmed.length > 300) {
+        errors.item = 'Item cannot exceed 300 characters';
         isValid = false;
       }
     }
 
     if (step === 3) {
       // Validate scene
-      if (!data.scene?.trim()) {
-        errors.scene = 'Please select where we find them';
+      const sceneTrimmed = data.scene?.trim() || '';
+      if (sceneTrimmed.length < 20) {
+        errors.scene = 'Scene description must be at least 20 characters';
         isValid = false;
-      } else if (data.scene.trim().length > 200) {
-        errors.scene = 'Scene cannot exceed 200 characters';
+      } else if (sceneTrimmed.length > 300) {
+        errors.scene = 'Scene cannot exceed 300 characters';
         isValid = false;
       }
     }

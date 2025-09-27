@@ -6,22 +6,6 @@
  */
 
 /**
- * Predefined species from Root RPG
- */
-const SPECIES = [
-  'Badger', 'Bird', 'Cat', 'Fox', 'Mouse', 'Owl', 'Rabbit', 
-  'Raccoon', 'Squirrel', 'Wolf', 'Beaver', 'Opossum'
-];
-
-/**
- * Predefined playbooks from Root RPG
- */
-const PLAYBOOKS = [
-  'Adventurer', 'Arbiter', 'Harrier', 'Ranger', 'Ronin', 
-  'Scoundrel', 'Thief', 'Tinker', 'Vagrant'
-];
-
-/**
  * Character class representing a Root Vagabond character
  */
 export class Character {
@@ -31,8 +15,12 @@ export class Character {
    */
   constructor(data = {}) {
     this.name = data.name || '';
-    this.species = data.species || '';
-    this.playbook = data.playbook || '';
+    // Backward compatibility for old data
+    if (data.species && data.playbook && !data.speciesRole) {
+      this.speciesRole = `a ${data.species.toLowerCase()} ${data.playbook.toLowerCase()}`;
+    } else {
+      this.speciesRole = data.speciesRole || '';
+    }
     this.presentation = data.presentation || '';
     this.demeanor = data.demeanor || '';
     this.item = data.item || '';
@@ -52,8 +40,8 @@ export class Character {
     }
     
     const trimmedName = this.name.trim();
-    if (trimmedName.length === 0) {
-      return { isValid: false, error: 'Name cannot be empty' };
+    if (trimmedName.length < 2) {
+      return { isValid: false, error: 'Name must be at least 2 characters' };
     }
     
     if (trimmedName.length > 50) {
@@ -64,39 +52,7 @@ export class Character {
   }
 
   /**
-   * Validate the species field
-   * @returns {Object} Validation result with isValid boolean and error message
-   */
-  validateSpecies() {
-    if (!this.species || typeof this.species !== 'string') {
-      return { isValid: false, error: 'Species is required and must be a string' };
-    }
-    
-    if (!SPECIES.includes(this.species)) {
-      return { isValid: false, error: `Species must be one of: ${SPECIES.join(', ')}` };
-    }
-    
-    return { isValid: true };
-  }
-
-  /**
-   * Validate the playbook field
-   * @returns {Object} Validation result with isValid boolean and error message
-   */
-  validatePlaybook() {
-    if (!this.playbook || typeof this.playbook !== 'string') {
-      return { isValid: false, error: 'Playbook is required and must be a string' };
-    }
-    
-    if (!PLAYBOOKS.includes(this.playbook)) {
-      return { isValid: false, error: `Playbook must be one of: ${PLAYBOOKS.join(', ')}` };
-    }
-    
-    return { isValid: true };
-  }
-
-  /**
-   * Validate text fields (presentation, demeanor, item, scene)
+   * Validate text fields (speciesRole, presentation, demeanor, item, scene)
    * @param {string} fieldName - Name of the field being validated
    * @param {string} value - Value to validate
    * @returns {Object} Validation result with isValid boolean and error message
@@ -107,12 +63,12 @@ export class Character {
     }
     
     const trimmedValue = value.trim();
-    if (trimmedValue.length === 0) {
-      return { isValid: false, error: `${fieldName} cannot be empty` };
+    if (trimmedValue.length < 20) {
+      return { isValid: false, error: `${fieldName} must be at least 20 characters` };
     }
     
-    if (trimmedValue.length > 200) {
-      return { isValid: false, error: `${fieldName} cannot exceed 200 characters` };
+    if (trimmedValue.length > 300) {
+      return { isValid: false, error: `${fieldName} cannot exceed 300 characters` };
     }
     
     return { isValid: true };
@@ -124,6 +80,7 @@ export class Character {
    */
   validateTextFields() {
     const fields = [
+      { name: 'Species Role', value: this.speciesRole },
       { name: 'Presentation', value: this.presentation },
       { name: 'Demeanor', value: this.demeanor },
       { name: 'Item', value: this.item },
@@ -180,18 +137,6 @@ export class Character {
       return nameResult;
     }
 
-    // Validate species
-    const speciesResult = this.validateSpecies();
-    if (!speciesResult.isValid) {
-      return speciesResult;
-    }
-
-    // Validate playbook
-    const playbookResult = this.validatePlaybook();
-    if (!playbookResult.isValid) {
-      return playbookResult;
-    }
-
     // Validate text fields
     const textFieldsResult = this.validateTextFields();
     if (!textFieldsResult.isValid) {
@@ -214,8 +159,7 @@ export class Character {
   toJSON() {
     return {
       name: this.name,
-      species: this.species,
-      playbook: this.playbook,
+      speciesRole: this.speciesRole,
       presentation: this.presentation,
       demeanor: this.demeanor,
       item: this.item,
@@ -271,8 +215,7 @@ export class Character {
     // Create character from quiz data (no portrait or prompt yet)
     const character = new Character({
       name: quizData.name,
-      species: quizData.species,
-      playbook: quizData.playbook,
+      speciesRole: quizData.speciesRole,
       presentation: quizData.presentation,
       demeanor: quizData.demeanor,
       item: quizData.item,
@@ -307,22 +250,6 @@ export class Character {
     }
 
     return character;
-  }
-
-  /**
-   * Get array of valid species values
-   * @returns {string[]} Array of species names
-   */
-  static getSpecies() {
-    return [...SPECIES];
-  }
-
-  /**
-   * Get array of valid playbook values
-   * @returns {string[]} Array of playbook names
-   */
-  static getPlaybooks() {
-    return [...PLAYBOOKS];
   }
 }
 

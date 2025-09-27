@@ -91,7 +91,7 @@ export async function POST({ request }) {
  */
 function constructPrompt(character) {
 	// Template from research.md with dynamic insertion
-	return `Full body portrait of ${character.name}, a ${character.species} ${character.playbook}. Their demeanor is defined by: ${character.demeanor}. They are dressed ${character.presentation}. They carry ${character.item}. We find them ${character.scene}. In the vibrant, storybook art style of Kyle Ferrin's Root board game, textured and expressive.`;
+	return `Full body portrait of ${character.name}, ${character.speciesRole}. Their demeanor is defined by: ${character.demeanor}. They are dressed ${character.presentation}. They carry ${character.item}. We find them ${character.scene}. In the vibrant, storybook art style of Kyle Ferrin's Root board game, textured and expressive.`;
 }
 
 /**
@@ -100,22 +100,8 @@ function constructPrompt(character) {
  * @returns {string} SVG markup as string
  */
 function createPlaceholderSVG(character) {
-	const colors = {
-		'Badger': '#8B4513',
-		'Bird': '#4169E1',
-		'Cat': '#FF69B4',
-		'Fox': '#FF4500',
-		'Mouse': '#808080',
-		'Owl': '#8B4513',
-		'Rabbit': '#F5DEB3',
-		'Raccoon': '#696969',
-		'Squirrel': '#D2691E',
-		'Wolf': '#2F4F4F',
-		'Beaver': '#8B4513',
-		'Opossum': '#C0C0C0'
-	};
-	
-	const color = colors[character.species] || '#666666';
+	// Default color since speciesRole is descriptive
+	const color = '#666666';
 	
 	return `<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
 		<rect width="400" height="400" fill="#f0f8ff"/>
@@ -124,10 +110,10 @@ function createPlaceholderSVG(character) {
 		<circle cx="220" cy="130" r="8" fill="#000"/>
 		<path d="M 180 170 Q 200 180 220 170" stroke="#333" stroke-width="2" fill="none"/>
 		<text x="200" y="320" text-anchor="middle" font-family="serif" font-size="18" fill="#333">
-			${character.name} the ${character.species}
+			${character.name}
 		</text>
 		<text x="200" y="340" text-anchor="middle" font-family="serif" font-size="14" fill="#666">
-			${character.playbook}
+			${character.speciesRole}
 		</text>
 	</svg>`;
 }

@@ -89,44 +89,42 @@ describe('GET /api/gallery Contract Tests', () => {
 
 	describe('Character Object Structure', () => {
 		it('should return Characters with all required fields', async () => {
-			const response = await fetch(GALLERY_ENDPOINT, {
-				method: 'GET'
-			});
+		  const response = await fetch(GALLERY_ENDPOINT, {
+		    method: 'GET'
+		  });
 
-			const result = await response.json();
-			const character = result[0];
+		  const result = await response.json();
+		  const character = result[0];
 
-			// Verify all Character model fields are present
-			expect(character).toHaveProperty('name');
-			expect(character).toHaveProperty('species');
-			expect(character).toHaveProperty('playbook');
-			expect(character).toHaveProperty('presentation');
-			expect(character).toHaveProperty('demeanor');
-			expect(character).toHaveProperty('item');
-			expect(character).toHaveProperty('scene');
-			expect(character).toHaveProperty('portrait');
-			expect(character).toHaveProperty('prompt');
-			expect(character).toHaveProperty('createdAt');
+		  // Verify all Character model fields are present
+		  expect(character).toHaveProperty('name');
+		  expect(character).toHaveProperty('speciesRole');
+		  expect(character).toHaveProperty('presentation');
+		  expect(character).toHaveProperty('demeanor');
+		  expect(character).toHaveProperty('item');
+		  expect(character).toHaveProperty('scene');
+		  expect(character).toHaveProperty('portrait');
+		  expect(character).toHaveProperty('prompt');
+		  expect(character).toHaveProperty('createdAt');
 		});
 
 		it('should return Characters with correct data types', async () => {
-			const response = await fetch(GALLERY_ENDPOINT, {
-				method: 'GET'
-			});
+		  const response = await fetch(GALLERY_ENDPOINT, {
+		    method: 'GET'
+		  });
 
-			const result = await response.json();
-			const character = result[0];
+		  const result = await response.json();
+		  const character = result[0];
 
-			expect(typeof character.name).toBe('string');
-			expect(typeof character.species).toBe('string');
-			expect(typeof character.playbook).toBe('string');
-			expect(typeof character.presentation).toBe('string');
-			expect(typeof character.demeanor).toBe('string');
-			expect(typeof character.item).toBe('string');
-			expect(typeof character.scene).toBe('string');
-			expect(typeof character.portrait).toBe('string');
-			expect(typeof character.prompt).toBe('string');
-			expect(typeof character.createdAt).toBe('string');
+		  expect(typeof character.name).toBe('string');
+		  expect(typeof character.speciesRole).toBe('string');
+		  expect(typeof character.presentation).toBe('string');
+		  expect(typeof character.demeanor).toBe('string');
+		  expect(typeof character.item).toBe('string');
+		  expect(typeof character.scene).toBe('string');
+		  expect(typeof character.portrait).toBe('string');
+		  expect(typeof character.prompt).toBe('string');
+		  expect(typeof character.createdAt).toBe('string');
 		});
 
 		it('should return Characters with valid ISO timestamp format', async () => {

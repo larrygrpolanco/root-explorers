@@ -4,14 +4,13 @@ import { Character } from '../../src/lib/models/Character.js';
 describe('Character Model Unit Tests', () => {
   const validCharacterData = {
     name: 'Whiskers McTail',
-    species: 'Cat',
-    playbook: 'Scoundrel',
+    speciesRole: 'a cunning fox as a thief',
     presentation: 'Elegant silk vest with brass buttons',
-    demeanor: 'Sly and calculating',
-    item: 'Lockpicking tools',
-    scene: 'Moonlit alleyway',
+    demeanor: 'Sly, calculating, and always watchful',
+    item: 'A set of finely crafted lockpicking tools',
+    scene: 'In a shadowy moonlit alleyway behind the tavern',
     portrait: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQ...',
-    prompt: 'A Cat Scoundrel vagabond with elegant silk vest...'
+    prompt: 'A vagabond with elegant silk vest...'
   };
 
   describe('Constructor and Basic Properties', () => {
@@ -19,8 +18,7 @@ describe('Character Model Unit Tests', () => {
       const character = new Character(validCharacterData);
       
       expect(character.name).toBe(validCharacterData.name);
-      expect(character.species).toBe(validCharacterData.species);
-      expect(character.playbook).toBe(validCharacterData.playbook);
+      expect(character.speciesRole).toBe(validCharacterData.speciesRole);
       expect(character.presentation).toBe(validCharacterData.presentation);
       expect(character.demeanor).toBe(validCharacterData.demeanor);
       expect(character.item).toBe(validCharacterData.item);
@@ -33,8 +31,7 @@ describe('Character Model Unit Tests', () => {
       const character = new Character();
       
       expect(character.name).toBe('');
-      expect(character.species).toBe('');
-      expect(character.playbook).toBe('');
+      expect(character.speciesRole).toBe('');
       expect(character.presentation).toBe('');
       expect(character.demeanor).toBe('');
       expect(character.item).toBe('');
@@ -42,6 +39,19 @@ describe('Character Model Unit Tests', () => {
       expect(character.portrait).toBe('');
       expect(character.prompt).toBe('');
       expect(character.createdAt).toBe('');
+    });
+
+    it('should handle backward compatibility for old data', () => {
+      const oldData = {
+        name: 'Old Character',
+        species: 'Cat',
+        playbook: 'Scoundrel',
+        presentation: 'Old presentation'
+      };
+      const character = new Character(oldData);
+      
+      expect(character.speciesRole).toBe('a cat scoundrel');
+      expect(character.name).toBe('Old Character');
     });
   });
 
@@ -53,12 +63,12 @@ describe('Character Model Unit Tests', () => {
       expect(result.isValid).toBe(true);
     });
 
-    it('should reject empty name', () => {
-      const character = new Character({ name: '' });
+    it('should reject name less than 2 characters', () => {
+      const character = new Character({ name: 'A' });
       const result = character.validateName();
       
       expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Name is required and must be a string');
+      expect(result.error).toBe('Name must be at least 2 characters');
     });
 
     it('should reject name exceeding 50 characters', () => {
@@ -78,56 +88,6 @@ describe('Character Model Unit Tests', () => {
     });
   });
 
-  describe('Species Validation', () => {
-    it('should validate valid species', () => {
-      const character = new Character({ species: 'Cat' });
-      const result = character.validateSpecies();
-      
-      expect(result.isValid).toBe(true);
-    });
-
-    it('should reject invalid species', () => {
-      const character = new Character({ species: 'Dragon' });
-      const result = character.validateSpecies();
-      
-      expect(result.isValid).toBe(false);
-      expect(result.error).toContain('Species must be one of:');
-    });
-
-    it('should reject empty species', () => {
-      const character = new Character({ species: '' });
-      const result = character.validateSpecies();
-      
-      expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Species is required and must be a string');
-    });
-  });
-
-  describe('Playbook Validation', () => {
-    it('should validate valid playbook', () => {
-      const character = new Character({ playbook: 'Scoundrel' });
-      const result = character.validatePlaybook();
-      
-      expect(result.isValid).toBe(true);
-    });
-
-    it('should reject invalid playbook', () => {
-      const character = new Character({ playbook: 'Wizard' });
-      const result = character.validatePlaybook();
-      
-      expect(result.isValid).toBe(false);
-      expect(result.error).toContain('Playbook must be one of:');
-    });
-
-    it('should reject empty playbook', () => {
-      const character = new Character({ playbook: '' });
-      const result = character.validatePlaybook();
-      
-      expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Playbook is required and must be a string');
-    });
-  });
-
   describe('Text Field Validation', () => {
     it('should validate valid text fields', () => {
       const character = new Character(validCharacterData);
@@ -136,9 +96,10 @@ describe('Character Model Unit Tests', () => {
       expect(result.isValid).toBe(true);
     });
 
-    it('should reject text field exceeding 200 characters', () => {
+    it('should reject text field less than 20 characters', () => {
       const character = new Character({
-        presentation: 'A'.repeat(201),
+        speciesRole: 'Short',
+        presentation: 'Valid long text...',
         demeanor: 'Valid',
         item: 'Valid',
         scene: 'Valid'
@@ -146,12 +107,28 @@ describe('Character Model Unit Tests', () => {
       const result = character.validateTextFields();
       
       expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Presentation cannot exceed 200 characters');
+      expect(result.error).toContain('Species Role must be at least 20 characters');
+    });
+
+    it('should reject text field exceeding 300 characters', () => {
+      const longText = 'A'.repeat(301);
+      const character = new Character({
+        speciesRole: 'a valid species role description',
+        presentation: longText,
+        demeanor: 'Valid long enough',
+        item: 'Valid long enough',
+        scene: 'Valid long enough'
+      });
+      const result = character.validateTextFields();
+      
+      expect(result.isValid).toBe(false);
+      expect(result.error).toBe('Presentation cannot exceed 300 characters');
     });
 
     it('should reject empty text fields', () => {
       const character = new Character({
-        presentation: '',
+        speciesRole: '',
+        presentation: 'Valid',
         demeanor: 'Valid',
         item: 'Valid',
         scene: 'Valid'
@@ -159,7 +136,7 @@ describe('Character Model Unit Tests', () => {
       const result = character.validateTextFields();
       
       expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Presentation is required and must be a string');
+      expect(result.error).toBe('Species Role is required and must be a string');
     });
   });
 
@@ -211,19 +188,19 @@ describe('Character Model Unit Tests', () => {
     });
 
     it('should reject character with invalid name', () => {
-      const character = new Character({ ...validCharacterData, name: '' });
+      const character = new Character({ ...validCharacterData, name: 'A' });
       const result = character.validate(true);
       
       expect(result.isValid).toBe(false);
-      expect(result.error).toBe('Name is required and must be a string');
+      expect(result.error).toBe('Name must be at least 2 characters');
     });
 
-    it('should reject character with invalid species', () => {
-      const character = new Character({ ...validCharacterData, species: 'Dragon' });
+    it('should reject character with invalid speciesRole', () => {
+      const character = new Character({ ...validCharacterData, speciesRole: 'Short' });
       const result = character.validate(true);
       
       expect(result.isValid).toBe(false);
-      expect(result.error).toContain('Species must be one of:');
+      expect(result.error).toContain('Species Role must be at least 20 characters');
     });
   });
 
@@ -278,12 +255,11 @@ describe('Character Model Unit Tests', () => {
     it('should create from quiz data', () => {
       const quizData = {
         name: 'Test Character',
-        species: 'Cat',
-        playbook: 'Scoundrel',
-        presentation: 'Test presentation',
-        demeanor: 'Test demeanor',
-        item: 'Test item',
-        scene: 'Test scene'
+        speciesRole: 'a test species role that is sufficiently descriptive',
+        presentation: 'Test presentation that is long enough to meet requirements',
+        demeanor: 'Test demeanor description that meets the minimum length',
+        item: 'Test item description which is adequately detailed for validation',
+        scene: 'Test scene setting that provides sufficient context and detail'
       };
       
       const character = Character.fromQuizData(quizData);
@@ -295,13 +271,12 @@ describe('Character Model Unit Tests', () => {
 
     it('should throw error for invalid quiz data', () => {
       const invalidQuizData = {
-        name: '',
-        species: 'Cat',
-        playbook: 'Scoundrel',
-        presentation: 'Test',
-        demeanor: 'Test',
-        item: 'Test',
-        scene: 'Test'
+        name: 'A',
+        speciesRole: 'Short',
+        presentation: 'Valid',
+        demeanor: 'Valid',
+        item: 'Valid',
+        scene: 'Valid'
       };
       
       expect(() => Character.fromQuizData(invalidQuizData)).toThrow('Invalid quiz data:');
@@ -318,24 +293,6 @@ describe('Character Model Unit Tests', () => {
       const invalidSavedData = { ...validCharacterData, portrait: '' };
       
       expect(() => Character.fromSavedData(invalidSavedData)).toThrow('Invalid saved data:');
-    });
-
-    it('should return species enum', () => {
-      const species = Character.getSpecies();
-      
-      expect(Array.isArray(species)).toBe(true);
-      expect(species).toContain('Cat');
-      expect(species).toContain('Fox');
-      expect(species).toContain('Rabbit');
-    });
-
-    it('should return playbooks enum', () => {
-      const playbooks = Character.getPlaybooks();
-      
-      expect(Array.isArray(playbooks)).toBe(true);
-      expect(playbooks).toContain('Scoundrel');
-      expect(playbooks).toContain('Ranger');
-      expect(playbooks).toContain('Thief');
     });
   });
 });

@@ -1,60 +1,17 @@
 <script>
-  import { quizStore, quizActions, quizOptions } from '$lib/stores/quiz.js';
-  import { Character } from '$lib/models/Character.js';
+  import { quizStore, quizActions } from '$lib/stores/quiz.js';
   import { goto } from '$app/navigation';
 
   let quizState = $state();
-  let customPresentation = $state('');
-  let customDemeanor = $state('');
-  let customItem = $state('');
-  let customScene = $state('');
-  let isCustomPresentation = $state(false);
-  let isCustomDemeanor = $state(false);
-  let isCustomItem = $state(false);
-  let isCustomScene = $state(false);
 
   // Subscribe to the quiz store
   quizStore.subscribe(state => {
     quizState = state;
-    // Sync custom states with store
-    const presentationVal = state.data.presentation;
-    if (presentationVal && !quizOptions.presentation.includes(presentationVal)) {
-      isCustomPresentation = true;
-      customPresentation = presentationVal;
-    } else {
-      isCustomPresentation = false;
-    }
-    const demeanorVal = state.data.demeanor;
-    if (demeanorVal && !quizOptions.demeanor.includes(demeanorVal)) {
-      isCustomDemeanor = true;
-      customDemeanor = demeanorVal;
-    } else {
-      isCustomDemeanor = false;
-    }
-    const itemVal = state.data.item;
-    if (itemVal && !quizOptions.item.includes(itemVal)) {
-      isCustomItem = true;
-      customItem = itemVal;
-    } else {
-      isCustomItem = false;
-    }
-    const sceneVal = state.data.scene;
-    if (sceneVal && !quizOptions.scene.includes(sceneVal)) {
-      isCustomScene = true;
-      customScene = sceneVal;
-    } else {
-      isCustomScene = false;
-    }
   });
 
   // Handle field updates
   function updateField(field, value) {
     quizActions.updateField(field, value);
-  }
-
-  // Handle custom option selection
-  function handleCustomOption(field, customValue) {
-    updateField(field, customValue.trim());
   }
 
   // Navigation functions
@@ -85,10 +42,6 @@
       goto('/results');
     }
   }
-
-  // Get species and playbooks from Character model
-  const species = Character.getSpecies();
-  const playbooks = Character.getPlaybooks();
 </script>
 
 <div class="quiz-container">
@@ -103,7 +56,7 @@
         >
           <span class="step-number">{step}</span>
           <span class="step-label">
-            {step === 1 ? 'Basics' : step === 2 ? 'Character' : 'Scene'}
+            {step === 1 ? 'Basics' : step === 2 ? 'Details' : 'Scene'}
           </span>
         </button>
         {#if step < 3}
@@ -119,13 +72,13 @@
     <!-- Step 1: Basics -->
     {#if quizState.currentStep === 1}
       <div class="quiz-step">
-        <h2 class="step-title">Tell us about your vagabond</h2>
+        <h2 class="step-title">Step 1: Basics</h2>
         
         <!-- Name input -->
         <div class="form-group">
-          <label for="name" class="form-label">What is their name?</label>
+          <label for="name" class="form-label">What is your vagabond's name?</label>
           <input
-            id="names"
+            id="name"
             type="text"
             class="form-input {quizState.errors.name ? 'error' : ''}"
             bind:value={quizState.data.name}
@@ -137,191 +90,90 @@
           {#if quizState.errors.name}
             <div class="error-message">{quizState.errors.name}</div>
           {/if}
+          <div class="char-counter">{quizState.data.name.length}/50</div>
         </div>
 
-        <!-- Species dropdown -->
+        <!-- Species Role textarea -->
         <div class="form-group">
-          <label for="species" class="form-label">What species are they?</label>
-          <select
-            id="species"
-            class="form-select {quizState.errors.species ? 'error' : ''}"
-            bind:value={quizState.data.species}
-            onchange={(e) => updateField('species', e.target.value)}
+          <label for="speciesRole" class="form-label">Describe your vagabond's species and role in the Root world. What kind of creature are they, and what path do they follow?</label>
+          <textarea
+            id="speciesRole"
+            class="form-textarea {quizState.errors.speciesRole ? 'error' : ''}"
+            bind:value={quizState.data.speciesRole}
+            oninput={(e) => updateField('speciesRole', e.target.value)}
+            placeholder="e.g., a cunning fox as a thief or a sturdy badger as a tinker"
+            maxlength="300"
+            rows="4"
             disabled={quizState.isSubmitting}
-          >
-            <option value="">Choose a species...</option>
-            {#each species as speciesOption}
-              <option value={speciesOption}>{speciesOption}</option>
-            {/each}
-          </select>
-          {#if quizState.errors.species}
-            <div class="error-message">{quizState.errors.species}</div>
+          ></textarea>
+          {#if quizState.errors.speciesRole}
+            <div class="error-message">{quizState.errors.speciesRole}</div>
           {/if}
-        </div>
-
-        <!-- Playbook dropdown -->
-        <div class="form-group">
-          <label for="playbook" class="form-label">What is their playbook?</label>
-          <select
-            id="playbook"
-            class="form-select {quizState.errors.playbook ? 'error' : ''}"
-            bind:value={quizState.data.playbook}
-            onchange={(e) => updateField('playbook', e.target.value)}
-            disabled={quizState.isSubmitting}
-          >
-            <option value="">Choose a playbook...</option>
-            {#each playbooks as playbookOption}
-              <option value={playbookOption}>{playbookOption}</option>
-            {/each}
-          </select>
-          {#if quizState.errors.playbook}
-            <div class="error-message">{quizState.errors.playbook}</div>
-          {/if}
+          <div class="char-counter">{quizState.data.speciesRole.length}/300</div>
         </div>
       </div>
     {/if}
 
-    <!-- Step 2: Character Details -->
+    <!-- Step 2: Details -->
     {#if quizState.currentStep === 2}
       <div class="quiz-step">
-        <h2 class="step-title">How do they appear?</h2>
+        <h2 class="step-title">Step 2: Details</h2>
 
-        <!-- Presentation -->
+        <!-- Presentation textarea -->
         <div class="form-group">
-          <label class="form-label">How do they present themselves?</label>
-          <div class="radio-group {quizState.errors.presentation ? 'error' : ''}">
-            {#each quizOptions.presentation as option}
-              <label class="radio-option">
-                <input
-                  type="radio"
-                  name="presentation"
-                  value={option === 'Custom...' ? customPresentation : option}
-                  checked={option === 'Custom...' ? isCustomPresentation : (quizState.data.presentation === option && !isCustomPresentation)}
-                  onchange={() => {
-                    if (option === 'Custom...') {
-                      isCustomPresentation = true;
-                      const currentValue = quizState.data.presentation;
-                      if (!(currentValue && !quizOptions.presentation.includes(currentValue))) {
-                        customPresentation = '';
-                        updateField('presentation', '');
-                      }
-                    } else {
-                      isCustomPresentation = false;
-                      updateField('presentation', option);
-                    }
-                  }}
-                  disabled={quizState.isSubmitting}
-                />
-                <span class="radio-label">{option}</span>
-              </label>
-              {#if isCustomPresentation}
-                <input
-                  type="text"
-                  class="custom-input"
-                  bind:value={customPresentation}
-                  oninput={() => handleCustomOption('presentation', customPresentation)}
-                  placeholder="Describe their presentation..."
-                  maxlength="200"
-                  disabled={quizState.isSubmitting}
-                />
-              {/if}
-            {/each}
-          </div>
+          <label for="presentation" class="form-label">How is your vagabond dressed and presented? Describe their attire, accessories, and overall style in the woodland setting.</label>
+          <textarea
+            id="presentation"
+            class="form-textarea {quizState.errors.presentation ? 'error' : ''}"
+            bind:value={quizState.data.presentation}
+            oninput={(e) => updateField('presentation', e.target.value)}
+            placeholder="Describe their attire, accessories, and overall style in the woodland setting"
+            maxlength="300"
+            rows="4"
+            disabled={quizState.isSubmitting}
+          ></textarea>
           {#if quizState.errors.presentation}
             <div class="error-message">{quizState.errors.presentation}</div>
           {/if}
+          <div class="char-counter">{quizState.data.presentation.length}/300</div>
         </div>
 
-        <!-- Demeanor -->
+        <!-- Demeanor textarea -->
         <div class="form-group">
-          <label class="form-label">What is their signature demeanor?</label>
-          <div class="radio-group {quizState.errors.demeanor ? 'error' : ''}">
-            {#each quizOptions.demeanor as option}
-              <label class="radio-option">
-                <input
-                  type="radio"
-                  name="demeanor"
-                  value={option === 'Custom...' ? customDemeanor : option}
-                  checked={option === 'Custom...' ? isCustomDemeanor : (quizState.data.demeanor === option && !isCustomDemeanor)}
-                  onchange={() => {
-                    if (option === 'Custom...') {
-                      isCustomDemeanor = true;
-                      const currentValue = quizState.data.demeanor;
-                      if (!(currentValue && !quizOptions.demeanor.includes(currentValue))) {
-                        customDemeanor = '';
-                        updateField('demeanor', '');
-                      }
-                    } else {
-                      isCustomDemeanor = false;
-                      updateField('demeanor', option);
-                    }
-                  }}
-                  disabled={quizState.isSubmitting}
-                />
-                <span class="radio-label">{option}</span>
-              </label>
-              {#if isCustomDemeanor}
-                <input
-                  type="text"
-                  class="custom-input"
-                  bind:value={customDemeanor}
-                  oninput={() => handleCustomOption('demeanor', customDemeanor)}
-                  placeholder="Describe their demeanor..."
-                  maxlength="200"
-                  disabled={quizState.isSubmitting}
-                />
-              {/if}
-            {/each}
-          </div>
+          <label for="demeanor" class="form-label">What defines your vagabond's demeanor and personality? How do they carry themselves, and what emotions or traits stand out visually?</label>
+          <textarea
+            id="demeanor"
+            class="form-textarea {quizState.errors.demeanor ? 'error' : ''}"
+            bind:value={quizState.data.demeanor}
+            oninput={(e) => updateField('demeanor', e.target.value)}
+            placeholder="e.g., confident stride, wary eyes"
+            maxlength="300"
+            rows="4"
+            disabled={quizState.isSubmitting}
+          ></textarea>
           {#if quizState.errors.demeanor}
             <div class="error-message">{quizState.errors.demeanor}</div>
           {/if}
+          <div class="char-counter">{quizState.data.demeanor.length}/300</div>
         </div>
 
-        <!-- Item -->
+        <!-- Item textarea -->
         <div class="form-group">
-          <label class="form-label">What small, defining item do they carry?</label>
-          <div class="radio-group {quizState.errors.item ? 'error' : ''}">
-            {#each quizOptions.item as option}
-              <label class="radio-option">
-                <input
-                  type="radio"
-                  name="item"
-                  value={option === 'Custom...' ? customItem : option}
-                  checked={option === 'Custom...' ? isCustomItem : (quizState.data.item === option && !isCustomItem)}
-                  onchange={() => {
-                    if (option === 'Custom...') {
-                      isCustomItem = true;
-                      const currentValue = quizState.data.item;
-                      if (!(currentValue && !quizOptions.item.includes(currentValue))) {
-                        customItem = '';
-                        updateField('item', '');
-                      }
-                    } else {
-                      isCustomItem = false;
-                      updateField('item', option);
-                    }
-                  }}
-                  disabled={quizState.isSubmitting}
-                />
-                <span class="radio-label">{option}</span>
-              </label>
-              {#if isCustomItem}
-                <input
-                  type="text"
-                  class="custom-input"
-                  bind:value={customItem}
-                  oninput={() => handleCustomOption('item', customItem)}
-                  placeholder="Describe their item..."
-                  maxlength="200"
-                  disabled={quizState.isSubmitting}
-                />
-              {/if}
-            {/each}
-          </div>
+          <label for="item" class="form-label">What item does your vagabond carry, and why is it significant to them? Describe its appearance and how they use or hold it.</label>
+          <textarea
+            id="item"
+            class="form-textarea {quizState.errors.item ? 'error' : ''}"
+            bind:value={quizState.data.item}
+            oninput={(e) => updateField('item', e.target.value)}
+            placeholder="Describe its appearance and how they use or hold it"
+            maxlength="300"
+            rows="4"
+            disabled={quizState.isSubmitting}
+          ></textarea>
           {#if quizState.errors.item}
             <div class="error-message">{quizState.errors.item}</div>
           {/if}
+          <div class="char-counter">{quizState.data.item.length}/300</div>
         </div>
       </div>
     {/if}
@@ -329,52 +181,25 @@
     <!-- Step 3: Scene -->
     {#if quizState.currentStep === 3}
       <div class="quiz-step">
-        <h2 class="step-title">Where do we find them?</h2>
+        <h2 class="step-title">Step 3: Scene</h2>
 
-        <!-- Scene -->
+        <!-- Scene textarea -->
         <div class="form-group">
-          <label class="form-label">Right now, where do we find them?</label>
-          <div class="radio-group {quizState.errors.scene ? 'error' : ''}">
-            {#each quizOptions.scene as option}
-              <label class="radio-option">
-                <input
-                  type="radio"
-                  name="scene"
-                  value={option === 'Custom...' ? customScene : option}
-                  checked={option === 'Custom...' ? isCustomScene : (quizState.data.scene === option && !isCustomScene)}
-                  onchange={() => {
-                    if (option === 'Custom...') {
-                      isCustomScene = true;
-                      const currentValue = quizState.data.scene;
-                      if (!(currentValue && !quizOptions.scene.includes(currentValue))) {
-                        customScene = '';
-                        updateField('scene', '');
-                      }
-                    } else {
-                      isCustomScene = false;
-                      updateField('scene', option);
-                    }
-                  }}
-                  disabled={quizState.isSubmitting}
-                />
-                <span class="radio-label">{option}</span>
-              </label>
-              {#if isCustomScene}
-                <input
-                  type="text"
-                  class="custom-input"
-                  bind:value={customScene}
-                  oninput={() => handleCustomOption('scene', customScene)}
-                  placeholder="Describe the scene..."
-                  maxlength="200"
-                  disabled={quizState.isSubmitting}
-                />
-              {/if}
-            {/each}
-          </div>
+          <label for="scene" class="form-label">Where do we find your vagabond? Describe the scene, their pose, and the surrounding environment in the Root RPG world.</label>
+          <textarea
+            id="scene"
+            class="form-textarea {quizState.errors.scene ? 'error' : ''}"
+            bind:value={quizState.data.scene}
+            oninput={(e) => updateField('scene', e.target.value)}
+            placeholder="e.g., lurking in misty woods or standing defiantly on a hill"
+            maxlength="300"
+            rows="4"
+            disabled={quizState.isSubmitting}
+          ></textarea>
           {#if quizState.errors.scene}
             <div class="error-message">{quizState.errors.scene}</div>
           {/if}
+          <div class="char-counter">{quizState.data.scene.length}/300</div>
         </div>
       </div>
     {/if}
@@ -545,7 +370,7 @@
   }
 
   .form-input,
-  .form-select {
+  .form-textarea {
     width: 100%;
     padding: 0.75rem 1rem;
     border: 2px solid #d1d5db;
@@ -553,64 +378,32 @@
     font-size: 1rem;
     background-color: #fefefe;
     transition: all 0.2s;
+    font-family: inherit;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
   }
 
   .form-input:focus,
-  .form-select:focus {
+  .form-textarea:focus {
     outline: none;
     border-color: #8b4513;
     box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
   }
 
   .form-input.error,
-  .form-select.error {
+  .form-textarea.error {
     border-color: #ef4444;
   }
 
-  .radio-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .radio-group.error {
-    border: 2px solid #ef4444;
-    border-radius: 0.5rem;
-    padding: 1rem;
-  }
-
-  .radio-option {
-    display: flex;
-    align-items: center;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .radio-option:hover {
-    border-color: #8b4513;
-    background-color: rgba(139, 69, 19, 0.05);
-  }
-
-  .radio-option input[type="radio"] {
-    margin-right: 0.75rem;
-    accent-color: #8b4513;
-  }
-
-  .radio-label {
-    font-weight: 500;
-    color: #374151;
-  }
-
-  .custom-input {
-    width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.25rem;
+  .char-counter {
     font-size: 0.875rem;
+    color: #9ca3af;
+    text-align: right;
+    margin-top: 0.25rem;
   }
 
   .error-message {

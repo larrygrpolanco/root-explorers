@@ -23,13 +23,12 @@ vi.mock('@google/generative-ai', () => ({
 describe('POST /api/generate Contract Tests', () => {
 	// Valid test data based on Character model
 	const validQuizData = {
-		name: 'Whiskers McTail',
-		species: 'Cat',
-		playbook: 'Scoundrel',
-		presentation: 'Elegant silk vest with brass buttons',
-		demeanor: 'Sly and calculating',
-		item: 'Lockpicking tools',
-		scene: 'Moonlit alleyway'
+	  name: 'Whiskers McTail',
+	  speciesRole: 'a cunning cat scoundrel',
+	  presentation: 'Elegant silk vest with brass buttons and leather belt',
+	  demeanor: 'Sly, calculating, and always watchful for opportunities',
+	  item: 'A set of finely crafted lockpicking tools hidden in pockets',
+	  scene: 'In a shadowy moonlit alleyway behind the old tavern'
 	};
 
 	beforeEach(() => {
@@ -51,8 +50,7 @@ describe('POST /api/generate Contract Tests', () => {
 
 			// Verify all input fields are preserved
 			expect(data.name).toBe(validQuizData.name);
-			expect(data.species).toBe(validQuizData.species);
-			expect(data.playbook).toBe(validQuizData.playbook);
+			expect(data.speciesRole).toBe(validQuizData.speciesRole);
 			expect(data.presentation).toBe(validQuizData.presentation);
 			expect(data.demeanor).toBe(validQuizData.demeanor);
 			expect(data.item).toBe(validQuizData.item);
@@ -105,8 +103,8 @@ describe('POST /api/generate Contract Tests', () => {
 			expect(data.error).toBeDefined();
 		});
 
-		it('should reject request with invalid species enum', async () => {
-			const invalidData = { ...validQuizData, species: 'Dragon' };
+		it('should reject request with speciesRole less than 20 characters', async () => {
+		  const invalidData = { ...validQuizData, speciesRole: 'Short' };
 
 			const requestEvent = createMockRequestEvent('POST', '/api/generate', invalidData);
 			const response = await POST(requestEvent);
@@ -117,8 +115,9 @@ describe('POST /api/generate Contract Tests', () => {
 			expect(data.error).toBeDefined();
 		});
 
-		it('should reject request with invalid playbook enum', async () => {
-			const invalidData = { ...validQuizData, playbook: 'Wizard' };
+		it('should reject request with speciesRole exceeding 300 characters', async () => {
+		  const longText = 'A'.repeat(301);
+		  const invalidData = { ...validQuizData, speciesRole: longText };
 
 			const requestEvent = createMockRequestEvent('POST', '/api/generate', invalidData);
 			const response = await POST(requestEvent);
@@ -129,9 +128,9 @@ describe('POST /api/generate Contract Tests', () => {
 			expect(data.error).toBeDefined();
 		});
 
-		it('should reject request with description fields exceeding 200 characters', async () => {
-			const longText = 'A'.repeat(201); // 201 characters, exceeds limit
-			const invalidData = { ...validQuizData, presentation: longText };
+		it('should reject request with description fields exceeding 300 characters', async () => {
+		  const longText = 'A'.repeat(301); // 301 characters, exceeds limit
+		  const invalidData = { ...validQuizData, presentation: longText };
 
 			const requestEvent = createMockRequestEvent('POST', '/api/generate', invalidData);
 			const response = await POST(requestEvent);
@@ -160,8 +159,7 @@ describe('POST /api/generate Contract Tests', () => {
 
 			// Verify all Character model fields are present
 			expect(data).toHaveProperty('name');
-			expect(data).toHaveProperty('species');
-			expect(data).toHaveProperty('playbook');
+			expect(data).toHaveProperty('speciesRole');
 			expect(data).toHaveProperty('presentation');
 			expect(data).toHaveProperty('demeanor');
 			expect(data).toHaveProperty('item');
@@ -171,8 +169,7 @@ describe('POST /api/generate Contract Tests', () => {
 
 			// Verify data types
 			expect(typeof data.name).toBe('string');
-			expect(typeof data.species).toBe('string');
-			expect(typeof data.playbook).toBe('string');
+			expect(typeof data.speciesRole).toBe('string');
 			expect(typeof data.presentation).toBe('string');
 			expect(typeof data.demeanor).toBe('string');
 			expect(typeof data.item).toBe('string');
