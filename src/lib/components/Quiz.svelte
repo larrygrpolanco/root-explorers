@@ -3,17 +3,49 @@
   import { Character } from '$lib/models/Character.js';
   import { goto } from '$app/navigation';
 
-  // Subscribe to the quiz store
   let quizState = $state();
-  quizStore.subscribe(state => {
-    quizState = state;
-  });
-
-  // Custom input values for "Custom..." options
   let customPresentation = $state('');
   let customDemeanor = $state('');
   let customItem = $state('');
   let customScene = $state('');
+  let isCustomPresentation = $state(false);
+  let isCustomDemeanor = $state(false);
+  let isCustomItem = $state(false);
+  let isCustomScene = $state(false);
+
+  // Subscribe to the quiz store
+  quizStore.subscribe(state => {
+    quizState = state;
+    // Sync custom states with store
+    const presentationVal = state.data.presentation;
+    if (presentationVal && !quizOptions.presentation.includes(presentationVal)) {
+      isCustomPresentation = true;
+      customPresentation = presentationVal;
+    } else {
+      isCustomPresentation = false;
+    }
+    const demeanorVal = state.data.demeanor;
+    if (demeanorVal && !quizOptions.demeanor.includes(demeanorVal)) {
+      isCustomDemeanor = true;
+      customDemeanor = demeanorVal;
+    } else {
+      isCustomDemeanor = false;
+    }
+    const itemVal = state.data.item;
+    if (itemVal && !quizOptions.item.includes(itemVal)) {
+      isCustomItem = true;
+      customItem = itemVal;
+    } else {
+      isCustomItem = false;
+    }
+    const sceneVal = state.data.scene;
+    if (sceneVal && !quizOptions.scene.includes(sceneVal)) {
+      isCustomScene = true;
+      customScene = sceneVal;
+    } else {
+      isCustomScene = false;
+    }
+  });
 
   // Handle field updates
   function updateField(field, value) {
@@ -21,10 +53,8 @@
   }
 
   // Handle custom option selection
-  function handleCustomOption(field, isCustom, customValue) {
-    if (isCustom && customValue.trim()) {
-      updateField(field, customValue.trim());
-    }
+  function handleCustomOption(field, customValue) {
+    updateField(field, customValue.trim());
   }
 
   // Navigation functions
@@ -95,7 +125,7 @@
         <div class="form-group">
           <label for="name" class="form-label">What is their name?</label>
           <input
-            id="name"
+            id="names"
             type="text"
             class="form-input {quizState.errors.name ? 'error' : ''}"
             bind:value={quizState.data.name}
@@ -166,11 +196,17 @@
                   type="radio"
                   name="presentation"
                   value={option === 'Custom...' ? customPresentation : option}
-                  checked={quizState.data.presentation === (option === 'Custom...' ? customPresentation : option)}
-                  onchange={(e) => {
+                  checked={option === 'Custom...' ? isCustomPresentation : (quizState.data.presentation === option && !isCustomPresentation)}
+                  onchange={() => {
                     if (option === 'Custom...') {
-                      // Don't update field yet, wait for custom input
+                      isCustomPresentation = true;
+                      const currentValue = quizState.data.presentation;
+                      if (!(currentValue && !quizOptions.presentation.includes(currentValue))) {
+                        customPresentation = '';
+                        updateField('presentation', '');
+                      }
                     } else {
+                      isCustomPresentation = false;
                       updateField('presentation', option);
                     }
                   }}
@@ -178,12 +214,12 @@
                 />
                 <span class="radio-label">{option}</span>
               </label>
-              {#if option === 'Custom...' && quizState.data.presentation === customPresentation}
+              {#if isCustomPresentation}
                 <input
                   type="text"
                   class="custom-input"
                   bind:value={customPresentation}
-                  oninput={() => handleCustomOption('presentation', true, customPresentation)}
+                  oninput={() => handleCustomOption('presentation', customPresentation)}
                   placeholder="Describe their presentation..."
                   maxlength="200"
                   disabled={quizState.isSubmitting}
@@ -206,11 +242,17 @@
                   type="radio"
                   name="demeanor"
                   value={option === 'Custom...' ? customDemeanor : option}
-                  checked={quizState.data.demeanor === (option === 'Custom...' ? customDemeanor : option)}
-                  onchange={(e) => {
+                  checked={option === 'Custom...' ? isCustomDemeanor : (quizState.data.demeanor === option && !isCustomDemeanor)}
+                  onchange={() => {
                     if (option === 'Custom...') {
-                      // Don't update field yet, wait for custom input
+                      isCustomDemeanor = true;
+                      const currentValue = quizState.data.demeanor;
+                      if (!(currentValue && !quizOptions.demeanor.includes(currentValue))) {
+                        customDemeanor = '';
+                        updateField('demeanor', '');
+                      }
                     } else {
+                      isCustomDemeanor = false;
                       updateField('demeanor', option);
                     }
                   }}
@@ -218,12 +260,12 @@
                 />
                 <span class="radio-label">{option}</span>
               </label>
-              {#if option === 'Custom...' && quizState.data.demeanor === customDemeanor}
+              {#if isCustomDemeanor}
                 <input
                   type="text"
                   class="custom-input"
                   bind:value={customDemeanor}
-                  oninput={() => handleCustomOption('demeanor', true, customDemeanor)}
+                  oninput={() => handleCustomOption('demeanor', customDemeanor)}
                   placeholder="Describe their demeanor..."
                   maxlength="200"
                   disabled={quizState.isSubmitting}
@@ -246,11 +288,17 @@
                   type="radio"
                   name="item"
                   value={option === 'Custom...' ? customItem : option}
-                  checked={quizState.data.item === (option === 'Custom...' ? customItem : option)}
-                  onchange={(e) => {
+                  checked={option === 'Custom...' ? isCustomItem : (quizState.data.item === option && !isCustomItem)}
+                  onchange={() => {
                     if (option === 'Custom...') {
-                      // Don't update field yet, wait for custom input
+                      isCustomItem = true;
+                      const currentValue = quizState.data.item;
+                      if (!(currentValue && !quizOptions.item.includes(currentValue))) {
+                        customItem = '';
+                        updateField('item', '');
+                      }
                     } else {
+                      isCustomItem = false;
                       updateField('item', option);
                     }
                   }}
@@ -258,12 +306,12 @@
                 />
                 <span class="radio-label">{option}</span>
               </label>
-              {#if option === 'Custom...' && quizState.data.item === customItem}
+              {#if isCustomItem}
                 <input
                   type="text"
                   class="custom-input"
                   bind:value={customItem}
-                  oninput={() => handleCustomOption('item', true, customItem)}
+                  oninput={() => handleCustomOption('item', customItem)}
                   placeholder="Describe their item..."
                   maxlength="200"
                   disabled={quizState.isSubmitting}
@@ -293,11 +341,17 @@
                   type="radio"
                   name="scene"
                   value={option === 'Custom...' ? customScene : option}
-                  checked={quizState.data.scene === (option === 'Custom...' ? customScene : option)}
-                  onchange={(e) => {
+                  checked={option === 'Custom...' ? isCustomScene : (quizState.data.scene === option && !isCustomScene)}
+                  onchange={() => {
                     if (option === 'Custom...') {
-                      // Don't update field yet, wait for custom input
+                      isCustomScene = true;
+                      const currentValue = quizState.data.scene;
+                      if (!(currentValue && !quizOptions.scene.includes(currentValue))) {
+                        customScene = '';
+                        updateField('scene', '');
+                      }
                     } else {
+                      isCustomScene = false;
                       updateField('scene', option);
                     }
                   }}
@@ -305,12 +359,12 @@
                 />
                 <span class="radio-label">{option}</span>
               </label>
-              {#if option === 'Custom...' && quizState.data.scene === customScene}
+              {#if isCustomScene}
                 <input
                   type="text"
                   class="custom-input"
                   bind:value={customScene}
-                  oninput={() => handleCustomOption('scene', true, customScene)}
+                  oninput={() => handleCustomOption('scene', customScene)}
                   placeholder="Describe the scene..."
                   maxlength="200"
                   disabled={quizState.isSubmitting}
