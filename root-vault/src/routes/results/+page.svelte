@@ -93,6 +93,7 @@
 						timestamp: new Date().toISOString(),
 						liked: false
 					}]);
+					import { goto } from '$app/navigation';
 					goto('/gallery');
 				}}
 				class="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 flex-1 sm:flex-none"
@@ -119,7 +120,7 @@
 		</div>
 		<a
 			bind:this={downloadLink}
-			href={imageUrl}
+			{href:imageUrl}
 			download="vagabond-portrait.png"
 			style="display:none"
 			aria-label="Download link for portrait image"
